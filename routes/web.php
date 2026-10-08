@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\Mahasiswa2ImportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,6 +29,13 @@ Route::middleware('auth')->group(function () {
         Route::put('/mahasiswa/{mahasiswa}', [MahasiswaController::class, 'update'])->name('mahasiswa.update');
         Route::delete('/mahasiswa/{mahasiswa}', [MahasiswaController::class, 'destroy'])->name('mahasiswa.destroy');
     });
+
+    // Import data Mahasiswa2
+    Route::get('/mahasiswa2/import', [Mahasiswa2ImportController::class, 'create'])
+        ->name('mahasiswa2.import');
+
+    Route::post('/mahasiswa2/import', [Mahasiswa2ImportController::class, 'store'])
+        ->name('mahasiswa2.import.store');
 });
 
 require __DIR__.'/auth.php';
